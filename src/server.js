@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 
 const healthRoute = require("./routes/health");
+const notFoundHandler = require("./error-handlers/404");
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(healthRoute);
+app.use("*", notFoundHandler);
 
 module.exports = {
   server: app,
