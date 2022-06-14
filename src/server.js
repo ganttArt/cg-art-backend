@@ -6,6 +6,7 @@ const cors = require("cors");
 
 const healthRoute = require("./routes/health");
 const notFoundHandler = require("./error-handlers/404");
+const serverErrorHandler = require("./error-handlers/500");
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(healthRoute);
 app.use("*", notFoundHandler);
+app.use(serverErrorHandler);
 
 module.exports = {
   server: app,
